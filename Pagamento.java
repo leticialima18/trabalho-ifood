@@ -6,21 +6,18 @@ public abstract class Pagamento {
         this.valor = valor;
     }
 
-
     public double getValor() {
         return valor;
     }
 
-
     public abstract void realizarPagamento();
 }
 
-public class PagamentoPix extends Pagamento {
+class PagamentoPix extends Pagamento {
 
     public PagamentoPix(double valor) {
         super(valor);
     }
-
 
     @Override
     public void realizarPagamento() {
@@ -28,21 +25,18 @@ public class PagamentoPix extends Pagamento {
     }
 }
 
-public class PagamentoCartao extends Pagamento {
+class PagamentoCartao extends Pagamento {
 
     private String numeroCartao;
-
 
     public PagamentoCartao(double valor, String numeroCartao) {
         super(valor);
         this.numeroCartao = numeroCartao;
     }
 
-
     public String getNumeroCartao() {
         return numeroCartao;
     }
-
 
     @Override
     public void realizarPagamento() {
@@ -50,16 +44,26 @@ public class PagamentoCartao extends Pagamento {
     }
 }
 
-public class PagamentoDinheiro extends Pagamento {
-
+class PagamentoDinheiro extends Pagamento {
 
     public PagamentoDinheiro(double valor) {
         super(valor);
     }
 
-
     @Override
     public void realizarPagamento() {
         System.out.println("Pagamento de R$ " + getValor() + " em dinheiro.");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Pagamento pagamento1 = new PagamentoPix(100.0);
+        Pagamento pagamento2 = new PagamentoCartao(250.0, "1234-5678-9012-3456");
+        Pagamento pagamento3 = new PagamentoDinheiro(50.0);
+
+        pagamento1.realizarPagamento();
+        pagamento2.realizarPagamento();
+        pagamento3.realizarPagamento();
     }
 }
